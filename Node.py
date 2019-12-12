@@ -4,3 +4,4 @@ class Node(object):
         self.connections = []
         self.alive = []
         self.history = []
+
