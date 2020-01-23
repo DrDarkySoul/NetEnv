@@ -20,8 +20,8 @@ def check_topology(config):
     return True
 
 
-class Environment:
-    path = "config/Environment.json"
+class Network:
+    path = "config/Network.json"
     topology = {}
     nodes_number = 0
     connects = []
@@ -69,7 +69,7 @@ class Environment:
             print(f"From node №{from_} to node №{to_} message: {hex(msg)}")
 
 
-e = Environment()
+e = Network()
 e.print()
 e.generator.run(Kind.DANGER, 1000)
 e.print_history()
