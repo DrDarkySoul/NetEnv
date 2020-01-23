@@ -35,7 +35,7 @@ class Environment:
                 self.topology = raw_topology['nodes']
                 self.connects = self.get_connects()
                 self.connects_number = len(self.connects)
-                self.generator = TrafficGenerator(self.connects, 512)
+                self.generator = TrafficGenerator(self.connects, 128)
 
     def print(self):
         nodes_num = self.nodes_number

@@ -18,4 +18,18 @@ def create_config():
         json.dump(config, outfile)
 
 
-create_config()
+def create_template():
+    config = {'size': 128}
+    masks = [
+        'AA19000000000019',
+        '3219000088000000',
+        '2424242424242424',
+        '3324000000000000',
+        '0000000000000512'
+    ]
+    config['masks'] = masks
+
+    with open('config/Templates.json', 'w') as outfile:
+        json.dump(config, outfile)
+
+create_template()
