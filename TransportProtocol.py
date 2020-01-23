@@ -1,4 +1,4 @@
-class TransportProtocol(object):
+class TransportProtocol:
     def __init__(self):
         self.start = 0x3897
         self.msg_type = 0

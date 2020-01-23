@@ -1,4 +1,4 @@
-class ChannelProtocol(object):
+class ChannelProtocol:
     def __init__(self):
         self.start = 0x2700
         self.msg_type = 0
