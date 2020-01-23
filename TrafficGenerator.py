@@ -47,3 +47,6 @@ class TrafficGenerator:
             while i:
                 self.generate(kind)
                 i -= 1
+
+    def reset(self):
+        self.history = []

@@ -36,6 +36,7 @@ class Network:
                 self.connects = self.get_connects()
                 self.connects_number = len(self.connects)
                 self.generator = TrafficGenerator(self.connects, 64)
+                self.history = self.generator.history
 
     def print(self):
         nodes_num = self.nodes_number
@@ -59,14 +60,21 @@ class Network:
                     connects.append([i, j])
         return connects
 
+    def reset(self):
+        self.generator.reset()
+
     def print_history(self, k=100):
         for i in range(0, k):
-            sending = self.generator.history[i]
+            sending = self.history[i]
             connect = sending['connection']
             from_ = connect[0]
             to_ = connect[1]
             msg = sending['message']
             print(f"From node №{from_} to node №{to_} message: {hex(msg)}")
+
+    def step(self):
+        self.generator.generate()
+        return self.history[-1]
 
 
 e = Network()
