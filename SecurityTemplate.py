@@ -5,7 +5,7 @@ import binascii
 def unhexlify_array(arr):
     arr_bin = []
     for string in arr:
-        arr_bin.append(binascii.unhexlify(string))
+        arr_bin.append(int.from_bytes(binascii.unhexlify(string), 'big'))
     return arr_bin
 
 

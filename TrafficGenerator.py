@@ -39,11 +39,11 @@ class TrafficGenerator:
         note = {'connection': connection, 'message': message}
         self.history.append(note)
 
-    def run(self, i=0):
+    def run(self, kind=Kind.NO, i=0):
         if i <= 0:
             while True:
-                self.generate()
+                self.generate(kind)
         else:
             while i:
-                self.generate()
+                self.generate(kind)
                 i -= 1

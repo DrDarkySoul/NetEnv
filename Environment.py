@@ -1,5 +1,5 @@
 import json
-from TrafficGenerator import TrafficGenerator
+from TrafficGenerator import TrafficGenerator, Kind
 
 
 def check_topology(config):
@@ -35,7 +35,7 @@ class Environment:
                 self.topology = raw_topology['nodes']
                 self.connects = self.get_connects()
                 self.connects_number = len(self.connects)
-                self.generator = TrafficGenerator(self.connects, 128)
+                self.generator = TrafficGenerator(self.connects, 64)
 
     def print(self):
         nodes_num = self.nodes_number
@@ -71,5 +71,5 @@ class Environment:
 
 e = Environment()
 e.print()
-e.generator.run(1000)
+e.generator.run(Kind.DANGER, 1000)
 e.print_history()
