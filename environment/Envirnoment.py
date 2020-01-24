@@ -1,3 +1,4 @@
+from enums.Kind import Kind
 from network.Network import Network
 from enums.Behavior import Behavior
 
@@ -22,10 +23,14 @@ class Environment:
 
         note = self.network.step()
 
-        # if()
+        if (action == 1) & (note.kind == Kind.DANGER):
+            reward = 1
+        elif (action == 1) & (note.kind == Kind.SAFE):
+            reward = -1
+        else:
+            reward = 0
 
-        observation = 0
-        reward = 0
+        observation = note.message
         done = self.done
-        info = self.info
+        info = note
         return observation, reward, done, info

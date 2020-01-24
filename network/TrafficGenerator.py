@@ -31,6 +31,11 @@ class TrafficGenerator:
                     mask = tmp
                     break
                 message = random.getrandbits(self.message_size)
+        if kind == Kind.ALL:
+            if self.checker.check(message):
+                kind = Kind.DANGER
+            else:
+                kind = Kind.SAFE
         self.history.write(HistoryNote(connection, message, kind, mask))
 
     def run(self, kind=Kind.ALL, i=0):
