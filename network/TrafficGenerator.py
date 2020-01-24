@@ -1,6 +1,6 @@
 import random
-from SecurityTemplate import SecurityTemplate
-from History import History
+from environment.SecurityTemplate import SecurityTemplate
+from log.History import History
 from enums.Kind import Kind
 
 

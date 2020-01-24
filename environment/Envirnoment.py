@@ -1,4 +1,4 @@
-from Network import Network
+from network.Network import Network
 from enums.Behavior import Behavior
 
 
@@ -19,6 +19,10 @@ class Environment:
         if (action != 0) & (action != 1):
             print("Wrong action")
             return -1, -1, False, ""
+
+        note = self.network.step()
+
+        # if()
 
         observation = 0
         reward = 0

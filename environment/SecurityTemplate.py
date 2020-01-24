@@ -10,7 +10,7 @@ def unhexlify_array(arr):
 
 
 class SecurityTemplate:
-    path = "config/Templates.json"
+    path = "../config/Templates.json"
     last_template = -1
 
     def __init__(self):

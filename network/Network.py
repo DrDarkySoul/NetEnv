@@ -1,5 +1,5 @@
 import json
-from TrafficGenerator import TrafficGenerator, Kind
+from network.TrafficGenerator import TrafficGenerator, Kind
 
 
 def check_topology(config):
@@ -21,7 +21,7 @@ def check_topology(config):
 
 
 class Network:
-    path = "config/Network.json"
+    path = "../config/Network.json"
     topology = {}
     nodes_number = 0
     connects = []
@@ -76,7 +76,7 @@ class Network:
 
     def step(self):
         self.generator.generate()
-        return self.history[-1]
+        return self.history.log[-1]
 
 
 e = Network()
