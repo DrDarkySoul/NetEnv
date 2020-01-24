@@ -2,6 +2,7 @@ import random
 from environment.SecurityTemplate import SecurityTemplate
 from log.History import History
 from enums.Kind import Kind
+from log.HistoryNote import HistoryNote
 
 
 class TrafficGenerator:
@@ -30,7 +31,7 @@ class TrafficGenerator:
                     mask = tmp
                     break
                 message = random.getrandbits(self.message_size)
-        self.history.write(connection, message, kind, mask)
+        self.history.write(HistoryNote(connection, message, kind, mask))
 
     def run(self, kind=Kind.ALL, i=0):
         if i <= 0:

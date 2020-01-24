@@ -1,15 +1,21 @@
 import json
 from errors.TopologyExceptions import TopologySizeException, TopologyMainDiagException, TopologySymmetryException
+from network.Connection import Connection
 
 
 class Topology:
     _path = "config/Network.json"
+
     nodes_number = 0
     nodes = []
+    connections = []
+    connections_number = 0
 
     def __init__(self, nodes):
         self.nodes = nodes
         self.nodes_number = len(nodes)
+        self.connections = self.get_connects()
+        self.connections_number = len(self.connections)
 
     def __repr__(self):
         representation = ""
@@ -63,6 +69,19 @@ class Topology:
         Topology.check_sym_diag(arr, size)
         return True
 
+    def has_connect(self, i, j):
+        if self.nodes[i][j] == 1:
+            return True
+        return False
+
+    def get_connects(self):
+        con = []
+        for i in range(0, self.nodes_number):
+            for j in range(0, self.nodes_number):
+                if self.nodes[i][j] == 1:
+                    con.append(Connection(i, j))
+        return con
+
     def serialize(self):
         return {'nodes_number': self.nodes_number, 'nodes': self.nodes}
 
@@ -70,3 +89,9 @@ class Topology:
         if self.check(ser):
             self.nodes_number = ser['nodes_number']
             self.nodes = ser['nodes']
+
+    def reset(self):
+        self.nodes_number = 0
+        self.nodes = []
+        self.connections = []
+        self.connections_number = 0

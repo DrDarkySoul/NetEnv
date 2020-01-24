@@ -10,11 +10,11 @@ def unhexlify_array(arr):
 
 
 class SecurityTemplate:
-    path = "../config/Templates.json"
+    _path = "config/Templates.json"
     last_template = -1
 
     def __init__(self):
-        with open(self.path) as config:
+        with open(self._path) as config:
             raw_template = json.load(config)
             self.size = raw_template['size']
             self.masks = raw_template['masks']
