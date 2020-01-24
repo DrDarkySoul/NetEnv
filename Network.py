@@ -65,12 +65,14 @@ class Network:
 
     def print_history(self, k=100):
         for i in range(0, k):
-            sending = self.history[i]
+            sending = self.history.log[i]
             connect = sending['connection']
             from_ = connect[0]
             to_ = connect[1]
             msg = sending['message']
-            print(f"From node №{from_} to node №{to_} message: {hex(msg)}")
+            kind = sending['kind']
+            mask = hex(sending['mask'])
+            print(f"From node №{from_} to node №{to_} message: {hex(msg)} {kind} and mask {mask}")
 
     def step(self):
         self.generator.generate()

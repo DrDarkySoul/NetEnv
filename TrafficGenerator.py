@@ -1,16 +1,11 @@
 import random
 from SecurityTemplate import SecurityTemplate
-from enum import Enum
-
-
-class Kind(Enum):
-    NO = 0,
-    SAFE = 1,
-    DANGER = 2
+from History import History
+from enums.Kind import Kind
 
 
 class TrafficGenerator:
-    history = []
+    history = History()
     checker = SecurityTemplate()
 
     def __init__(self, connections, size):
@@ -18,35 +13,32 @@ class TrafficGenerator:
         self.connections_number = len(self.connections)
         self.message_size = size
 
-    def generate(self, kind=Kind.NO):
+    def generate(self, kind=Kind.ALL):
         connection_index = random.randint(0, self.connections_number - 1)
         connection = self.connections[connection_index]
         message = random.getrandbits(self.message_size)
+        mask = -1
         if kind == Kind.SAFE:
-            check = True
-            while check:
+            while True:
                 if not self.checker.check(message):
-                    check = False
                     break
                 message = random.getrandbits(self.message_size)
         if kind == Kind.DANGER:
-            check = True
-            while check:
-                if self.checker.check(message):
-                    check = False
+            while True:
+                check, tmp = self.checker.check_with_mask(message)
+                if check:
+                    mask = tmp
                     break
                 message = random.getrandbits(self.message_size)
-        note = {'connection': connection, 'message': message}
-        self.history.append(note)
+        self.history.write(connection, message, kind, mask)
 
-    def run(self, kind=Kind.NO, i=0):
+    def run(self, kind=Kind.ALL, i=0):
         if i <= 0:
             while True:
                 self.generate(kind)
         else:
-            while i:
+            for i in range(0, i):
                 self.generate(kind)
-                i -= 1
 
     def reset(self):
-        self.history = []
+        self.history.reset()
