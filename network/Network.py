@@ -1,23 +1,5 @@
-import json
+
 from network.TrafficGenerator import TrafficGenerator, Kind
-
-
-def check_topology(config):
-    size = config['number_nodes']
-    arr = config['nodes']
-    check_main_diag = [i for i in range(0, size) if arr[i][i] != 0]
-    if len(check_main_diag) != 0:
-        print("Error in topology config: side diagonal has non-zero element")
-        return False
-    check_symmetry = True
-    for i in range(0, size):
-        for j in range(0, size):
-            if arr[i][j] != arr[j][i]:
-                check_symmetry = False
-    if not check_symmetry:
-        print("Error in topology config: array not symmetrical on the side diagonal")
-        return False
-    return True
 
 
 class Network:

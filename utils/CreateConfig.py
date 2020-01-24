@@ -1,20 +1,18 @@
+from network.Topology import Topology
 import json
 
 
-def create_config():
-    config = {'number_nodes': 8,
-              'nodes': [
-                  [0, 0, 0, 1, 0, 0, 0, 0],
-                  [0, 0, 0, 1, 0, 0, 0, 0],
-                  [0, 0, 0, 1, 0, 0, 0, 0],
-                  [1, 1, 1, 0, 0, 0, 0, 1],
-                  [0, 0, 0, 0, 0, 0, 0, 1],
-                  [0, 0, 0, 0, 0, 0, 0, 1],
-                  [0, 0, 0, 0, 0, 0, 0, 1],
-                  [0, 0, 0, 1, 1, 1, 1, 0]]
-              }
-    with open('config/Network.json', 'w') as outfile:
-        json.dump(config, outfile)
+def create_test_json():
+    nodes = [
+            [0, 0, 0, 1, 0, 0, 0, 0],
+            [0, 0, 0, 1, 0, 0, 0, 0],
+            [0, 0, 0, 1, 0, 0, 0, 0],
+            [1, 1, 1, 0, 0, 0, 0, 1],
+            [0, 0, 0, 0, 0, 0, 0, 1],
+            [0, 0, 0, 0, 0, 0, 0, 1],
+            [0, 0, 0, 0, 0, 0, 0, 1],
+            [0, 0, 0, 1, 1, 1, 1, 0]]
+    Topology(nodes).to_json()
 
 
 def create_template():
@@ -28,3 +26,7 @@ def create_template():
               }
     with open('config/Templates.json', 'w') as outfile:
         json.dump(config, outfile)
+
+
+create_test_json()
+print(Topology.from_json())
