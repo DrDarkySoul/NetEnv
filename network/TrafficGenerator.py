@@ -1,12 +1,11 @@
 import random
 from environment.SecurityTemplate import SecurityTemplate
-from log.History import History
+from log.Historical import Historical
 from enums.Kind import Kind
 from log.HistoryNote import HistoryNote
 
 
-class TrafficGenerator:
-    history = History()
+class TrafficGenerator(Historical):
     checker = SecurityTemplate()
 
     def __init__(self, connections, size):

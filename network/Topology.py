@@ -1,15 +1,14 @@
 import json
 from errors.TopologyExceptions import TopologySizeException, TopologyMainDiagException, TopologySymmetryException
 from network.Connection import Connection
+from network.WithConnections import WithConnections
 
 
-class Topology:
+class Topology(WithConnections):
     _path = "config/Network.json"
 
     nodes_number = 0
     nodes = []
-    connections = []
-    connections_number = 0
 
     def __init__(self, nodes):
         self.nodes = nodes

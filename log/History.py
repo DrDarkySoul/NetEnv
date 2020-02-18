@@ -1,3 +1,4 @@
+
 class History:
     log = []
     size = len(log)
@@ -17,4 +18,6 @@ class History:
             msg = note.message
             kind = note.kind
             mask = note.mask
-            print(f"From node №{from_} to node №{to_} message: {hex(msg)} {kind} and mask {hex(mask)}")
+            print(f"From node №{from_} "
+                  f"to node №{to_} message: {hex(msg)} "
+                  f"{kind} and mask {hex(mask)}")
